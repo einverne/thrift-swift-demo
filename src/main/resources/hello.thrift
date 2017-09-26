@@ -58,6 +58,7 @@ exception <异常名称> {
  */
 
 service UserService {
+    void ping();
     list<User> getAllStudent(1:Request request) throws (1:HelloException e);
 }
 

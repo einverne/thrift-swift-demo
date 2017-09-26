@@ -43,6 +43,11 @@ public class UserServerDemo {
 
     public static class UserServiceImpl implements UserService.Iface {
         @Override
+        public void ping() throws TException {
+            System.out.println("pong");
+        }
+
+        @Override
         public List<User> getAllStudent(Request request) throws HelloException, TException {
             System.out.println(request.getName());
             System.out.println(request.getPassword());

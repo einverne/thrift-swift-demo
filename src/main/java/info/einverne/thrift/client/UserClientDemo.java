@@ -33,6 +33,17 @@ public class UserClientDemo {
             tSocket.open();
             //正式调用接口
             List<User> users = client.getAllStudent(request);
+
+            // test
+            int max = 100000;
+            long startTime = System.currentTimeMillis();
+            for (int i = 0; i < max; i++) {
+                client.ping();
+            }
+            long endTime = System.currentTimeMillis();
+            long elpase = endTime - startTime;
+            System.out.println("call thrift method " + max + " times, cost " + elpase + " ms");
+
             //请求结束，断开连接
             tSocket.close();
             for (User user : users) {
