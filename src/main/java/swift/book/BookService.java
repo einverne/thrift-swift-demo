@@ -1,4 +1,4 @@
-package swift;
+package swift.book;
 
 import com.facebook.swift.codec.*;
 import com.facebook.swift.codec.ThriftField.Requiredness;

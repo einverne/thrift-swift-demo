@@ -10,8 +10,6 @@ import org.apache.thrift.transport.TTransportException;
 
 /**
  * 服务端测试类
- *
- * @author yzl
  */
 public class HelloServerDemo {
     /**
@@ -28,8 +26,7 @@ public class HelloServerDemo {
         TBinaryProtocol.Factory protocolFactory = new TBinaryProtocol.Factory(true, true);// 可读可写
         // 处理层
         HelloService.Iface handler = new HelloServiceImpl();
-        HelloService.Processor<HelloService.Iface> processor = new HelloService.Processor<HelloService.Iface>(
-                handler);
+        HelloService.Processor<HelloService.Iface> processor = new HelloService.Processor<HelloService.Iface>(handler);
         // 服务层
         TServer server = new TThreadPoolServer(
                 new TThreadPoolServer.Args(serverTransport).protocolFactory(protocolFactory).processor(
