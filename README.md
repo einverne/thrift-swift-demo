@@ -1,3 +1,13 @@
+# Demo 介绍
+Demo 包含以下内容
+
+- thrift Demo
+- swift(Facebook 开放基于注解的 thrift) 项目Demo
+- swift with Spring MVC
+- swift with Spring boot
+
+# Thrift 介绍
+
 Apache Thrift 是一个跨语言的RPC框架, 源于Facebook, 目前已经作为开源项目提交给了Apache 软件基金会。Thrift解决了Facebook各系统的大数据量传输通信和内部不同语言环境的跨平台调用。 它结合了功能强大的软件堆栈和代码生成引擎，以构建在 C++, Java, Go,Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml 这些编程语言间无缝结合的、高效的服务。
 
 RPC，全称 Remote Procedure Call（远程过程调用），即调用远程计算机上的服务，就像调用本地服务一样。
