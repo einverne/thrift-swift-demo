@@ -84,17 +84,21 @@ thrift 支持的基本类型
     i64: 64位有符号整型
     double：64位浮点数
     string：未知编码或者二进制的字符串
-    binary: 二进制数据
 
 注意，thrift不支持无符号整型，因为很多目标语言不存在无符号整型（如java）。
+
+### 特殊类型
+未加密的字节流
+
+    binary: 二进制数据
 
 ### 容器类型
 
 Thrift提供了3种容器类型：
 
-    List<T>：一系列T类型的元素组成的有序表，元素可以重复
-    Set<T>：一系列T类型的元素组成的无序表，元素不可以重复
-    Map<t1,t2>：key/value对（key的类型是t1且key唯一，value类型是t2）。
+    List<T>：一系列T类型的元素组成的有序表，元素可以重复; 对应 C++ STL vector， Java 的 ArrayList 等等
+    Set<T>：一系列T类型的元素组成的无序表，元素不可以重复; 对应 STL 的 set， Java 的 HashSet
+    Map<t1,t2>：key/value对（key的类型是t1且key唯一，value类型是t2）; 对应 STL 的 map, Java 的 HashMap 等等
 
 容器中的元素类型可以是除了service意外的任何合法thrift类型（包括结构体和异常）。
 
@@ -104,8 +108,32 @@ Thrift结构体在概念上同C语言结构体类型----一种将相关属性聚
 
 异常在语法和功能上类似于结构体，只不过异常使用关键字exception而不是struct关键字声明。但它在语义上不同于结构体----当定义一个RPC服务时，开发者可能需要声明一个远程方法抛出一个异常。
 
+举例：
+    
+    struct Example {
+        1:i32 num=1,
+        2:string name="thrift"
+    }
+    
+    exception InvalidOperation {
+        1:i32 what,
+        2:string why
+    }
+
 ### 服务
-服务的定义方法在语法上等同于面向对象语言中定义接口。
+一个服务包含一组方法, 服务的定义方法在语法上等同于面向对象语言中定义接口，
+
+基本语法：
+
+    service <name> {
+        <return type> <method name> (<arguments>) [throws (<exceptions>)]
+    }
+    
+    service UserService {
+        void create(1:i32 id, 2:string name);
+        string get(1:i32 id);
+        list<string> getAll();
+    }
 
 这部分可以在 Demo 中 hello.thrift 中看到
 
