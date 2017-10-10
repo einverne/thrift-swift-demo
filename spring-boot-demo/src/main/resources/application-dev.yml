@@ -1,0 +1,10 @@
+server:
+  port: 8087
+logging:
+  level: debug
+key:
+  hello: hello world
+
+person:
+  name: Ein Verne
+  age: 19

@@ -87,6 +87,11 @@ thrift 支持的基本类型
 
 注意，thrift不支持无符号整型，因为很多目标语言不存在无符号整型（如java）。
 
+Thrift 允许用户定义常量，复杂类型可用 JSON 表示
+
+    const double PI = 3.14;
+    const map<string,string> MAP = {"hello": "world", "first": "second"}
+
 ### 特殊类型
 未加密的字节流
 
