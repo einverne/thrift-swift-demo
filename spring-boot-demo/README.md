@@ -16,8 +16,8 @@ application.yml是yaml语言的配置文件，yaml是一种以数据为中心的
 
 默认项目中使用 properties ，换用成 yml 格式
 
-
-
-
-
 - <https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/>
+
+## Swagger
+
+启动项目之后访问 <http://localhost:8087/swagger-ui.html> 查看文档。

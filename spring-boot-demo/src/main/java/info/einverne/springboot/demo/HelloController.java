@@ -1,8 +1,12 @@
 package info.einverne.springboot.demo;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /*
@@ -18,12 +22,20 @@ public class HelloController {
     @Autowired
     private Person person;
 
-    @RequestMapping("/hello")
+    @ApiOperation(value = "hello api name 接口名字", notes = "api detail desc 接口具体定义")
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
         return "world " + hello;
     }
 
-    @RequestMapping("/person")
+    @ApiOperation(value = "hello1 api name", notes = "api detail desc")
+    @ApiImplicitParam(name = "value", value = "传入参数 string", required = true, dataType = "String")
+    @RequestMapping(value = "/hello1", method = RequestMethod.POST)
+    public String hello1(@RequestBody HelloRequest value) {
+        return "world " + value.getValue();
+    }
+
+    @RequestMapping(value = "/person", method = RequestMethod.POST)
     public String person() {
         return "person info: " + person.getName() + " " + person.getAge();
     }
