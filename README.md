@@ -125,6 +125,26 @@ Thrift结构体在概念上同C语言结构体类型----一种将相关属性聚
         2:string why
     }
 
+thrift 提供两个关键字 `required` 和 `optional` ，分别用于表示对应字段必填还是可选，比如
+
+    struct People {
+        1: required string name,
+        2: optional i32 age;
+    }
+
+表示 name 必填， age 可选。
+
+在一个结构体中，如果field之间的关系是互斥的，即只能有一个field被使用被赋值。在这种情况下，我们可以使用union来声明这个结构体，而不是一堆堆optional的field，语意上也更明确了。例如：
+
+    union JavaObjectArg {
+      1: i32 int_arg;
+      2: i64 long_arg;
+      3: string string_arg;
+      4: bool bool_arg;
+      5: binary binary_arg;
+      6: double double_arg;
+    }
+
 ### 服务
 一个服务包含一组方法, 服务的定义方法在语法上等同于面向对象语言中定义接口，
 
@@ -141,6 +161,14 @@ Thrift结构体在概念上同C语言结构体类型----一种将相关属性聚
     }
 
 这部分可以在 Demo 中 hello.thrift 中看到
+
+### 命名空间
+Thrift 的命名空间相当于 Java 中的 package ，主要目的是为了组织代码。 thrift 使用关键字 namespace ：
+
+    namespace java info.einverne.thrift.demo
+    namespace java.swift info.einverne.swift.demo
+
+由此生成的代码，包路劲为 `info.einverne.thrift.demo` 这样。
 
 ## IDL 定义
 
@@ -183,6 +211,32 @@ Server将以上所有特性集成在一起：
 2. 为transport对象创建输入输出protocol
 3. 基于输入输出protocol创建processor
 4. 等待连接请求并将之交给processor处理
+
+## TProtocol 
+thrift 定义的 TProtocol 种类
+
+- TBinaryProtocol : 二进制格式
+- TCompactProtocol : 压缩格式，高效率、密集二进制编码格式
+- TJSONProtocol : JSON格式
+- TSimpleJSONProtocol : 提供JSON只写协议, 生成的文件很容易通过脚本语言解析。
+- TProtocolDecorator 
+
+## TTransport
+
+- TSocket：阻塞式socker；
+- TFramedTransport：使用非阻塞方式，以frame为单位进行传输。
+- TFileTransport：以文件形式进行传输。
+- TMemoryTransport：将内存用于I/O. java实现时内部实际使用了简单的ByteArrayOutputStream。
+- TZlibTransport：使用zlib进行压缩， 与其他传输方式联合使用。当前无java实现。
+- TNonblockingTransport : 使用非阻塞方式，用于构建异步客户端
+
+## TServer
+
+- TSimpleServer：单线程服务器端使用标准的阻塞式 I/O，简单的单线程服务模型，常用于测试；
+- TThreadPoolServer：多线程服务模型，使用标准的阻塞式IO；
+- TNonblockingServer：多线程服务模型，使用非阻塞式IO（需使用TFramedTransport数据传输方式）
+- THsHaServer 所有消息是被调用select()方法的同一个线程处理的
+- TThreadedSelectorServer 允许用多个线程来处理网络I/O，它维护了两个线程池，一个用来处理网络I/O，另一个用来进行请求的处理。当网络I/O是瓶颈的时候，TThreadedSelectorServer 比 THsHaServer的表现要好。
 
 thrift文件内容可能会随着时间变化的。如果已经存在的消息类型不再符合设计要求，比如，新的设计要在message格式中添加一个额外字段，但你仍想使用以前的thrift文件产生的处理代码。如果想要达到这个目的，只需：
 
@@ -265,6 +319,16 @@ A:
     TSimpleJSONProtocol : 提供JSON只写协议, 生成的文件很容易通过脚本语言解析 
     tips:客户端和服务端的协议要一致
 
+Q: NULL 问题
+A: thrift 中当调用值返回 null 时 thrift 会抛出 TApplicationException 异常。
+
+    } catch (TException e) { 
+        if (e instanceof TApplicationException && ((TApplicationException) e).getType() == TApplicationException.MISSING_RESULT) { 
+           System.out.println("The result of helloNull function is NULL"); 
+        } 
+    } 
+
+可以 catch 住 TApplicationException ，然后打印日志
 
 ## reference
 
@@ -273,3 +337,4 @@ A:
 - <http://blog.csdn.net/iter_zc/article/details/39697569>
 - <http://www.baeldung.com/apache-thrift>
 - <http://diwakergupta.github.io/thrift-missing-guide/>
+- <http://matt33.com/2016/04/07/thrift-learn/>

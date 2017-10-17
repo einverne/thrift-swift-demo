@@ -4,6 +4,7 @@ import info.einverne.thrift.HelloService;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
@@ -13,6 +14,7 @@ import org.apache.thrift.transport.TTransport;
  * @author Administrator
  */
 public class HelloClientDemo {
+    public static int port = 9000;
     /**
      * @param args 默认函数
      * @throws TException 异常
@@ -46,4 +48,6 @@ public class HelloClientDemo {
         // 关闭通道
         transport.close();
     }
+
+
 }

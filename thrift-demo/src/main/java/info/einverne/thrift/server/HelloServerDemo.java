@@ -2,9 +2,16 @@ package info.einverne.thrift.server;
 
 import info.einverne.thrift.HelloService;
 import org.apache.thrift.TException;
+import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TCompactProtocol;
+import org.apache.thrift.server.THsHaServer;
+import org.apache.thrift.server.TNonblockingServer;
 import org.apache.thrift.server.TServer;
+import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.server.TThreadPoolServer;
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TNonblockingServerSocket;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TTransportException;
 
@@ -34,7 +41,6 @@ public class HelloServerDemo {
         TCompactProtocol – 压缩格式
         TJSONProtocol – JSON格式
         TSimpleJSONProtocol –提供JSON只写协议, 生成的文件很容易通过脚本语言解析。
-        TDebugProtocol – 使用易懂的可读的文本格式，以便于debug
          */
         TBinaryProtocol.Factory protocolFactory = new TBinaryProtocol.Factory(true, true);// 可读可写
         /* 处理层
@@ -65,6 +71,75 @@ public class HelloServerDemo {
         TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).protocolFactory(protocolFactory).processor(processor));
         // 启动服务监听
         server.serve();
+    }
+
+    public static int port = 9000;
+    public static int clientTimeout = 1000;
+
+    /**
+     * 简单服务器，单线程阻塞
+     */
+    public static void startSimpleServer() {
+        try {
+            TServerSocket serverSocket = new TServerSocket(port, clientTimeout);
+            TBinaryProtocol.Factory protocol = new TBinaryProtocol.Factory(true, true);
+            TProcessor processor = new HelloService.Processor<HelloService.Iface>(new HelloServiceImpl());
+            TServer.Args args = new TServer.Args(serverSocket).protocolFactory(protocol).processor(processor);
+            TServer server = new TSimpleServer(args);
+            server.serve();
+        } catch (TTransportException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 多线程服务器，阻塞多线程
+     */
+    public static void startThreadPoolServer() {
+        try {
+            TServerSocket serverSocket = new TServerSocket(port, clientTimeout);
+            TBinaryProtocol.Factory protocol = new TBinaryProtocol.Factory(true, true);
+            TProcessor processor = new HelloService.Processor<HelloService.Iface>(new HelloServiceImpl());
+            TThreadPoolServer.Args args = new TThreadPoolServer.Args(serverSocket).protocolFactory(protocol).processor(processor);
+            TServer server = new TThreadPoolServer(args);
+            server.serve();
+        } catch (TTransportException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 非阻塞I/O
+     */
+    public static void startTNonBlockingServer() {
+        try {
+            TNonblockingServerSocket tNonblockingServerSocket = new TNonblockingServerSocket(port, clientTimeout);
+            TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+            TFramedTransport.Factory transport = new TFramedTransport.Factory(); // 创建transport 数据传输方式 非阻塞需要用这种方式传输
+            TProcessor processor = new HelloService.Processor<HelloService.Iface>(new HelloServiceImpl());
+            TNonblockingServer.Args args = new TNonblockingServer.Args(tNonblockingServerSocket).processor(processor).protocolFactory(protocol).transportFactory(transport);
+            TNonblockingServer server = new TNonblockingServer(args);
+            server.serve();
+        } catch (TTransportException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 半同步半异步的非阻塞 I/O
+     */
+    public static void startTHsHaServer() {
+        try {
+            TProcessor processor = new HelloService.Processor<HelloService.Iface>(new HelloServiceImpl());
+            TNonblockingServerSocket tNonblockingServerSocket = new TNonblockingServerSocket(port, clientTimeout);
+            TCompactProtocol.Factory factory = new TCompactProtocol.Factory();
+            TFramedTransport.Factory transport = new TFramedTransport.Factory();
+            THsHaServer.Args args = new THsHaServer.Args(tNonblockingServerSocket).processor(processor).protocolFactory(factory).transportFactory(transport);
+            THsHaServer server = new THsHaServer(args);
+            server.serve();
+        } catch (TTransportException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
