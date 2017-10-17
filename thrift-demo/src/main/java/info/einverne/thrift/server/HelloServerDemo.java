@@ -80,6 +80,7 @@ public class HelloServerDemo {
          */
         public String hello(String name)
                 throws TException {
+            System.out.println("client param + " + name);
             return "Hello " + name;
         }
     }
