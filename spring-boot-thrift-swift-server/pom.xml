@@ -52,6 +52,37 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!--定义 Plugin 在侧边栏 maven 中即可选择 swift:generate 来从 thrift 文件生成 swift 定义
+            https://github.com/facebook/swift/tree/master/swift-maven-plugin -->
+            <plugin>
+                <groupId>com.facebook.mojo</groupId>
+                <artifactId>swift-maven-plugin</artifactId>
+                <version>${swift.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>false</skip>
+                    <!--Defines a fileset to include for IDL parsing and code generation. must be defined-->
+                    <idlFiles>
+                        <directory>${project.basedir}/src/swift-generator/</directory>
+                        <includes>
+                            <include>**/*.thrift</include>
+                        </includes>
+                        <!--<exclues>-->
+                        <!--<exclued>**/other.thrift</exclued>-->
+                        <!--</exclues>-->
+                    </idlFiles>
+                    <!--Defines a Java package name if a Thrift IDL file does not contain a package name. This is used only as fallback. optional-->
+                    <defaultPackage>${project.groupId}.thrift.swift</defaultPackage>
+                    <!--Determines the output folder for the generated sources. optional with a default of ${project.build.directory}/generated-sources/swift -->
+                    <outputFolder>${project.basedir}/src/main/java/</outputFolder>
+                </configuration>
+            </plugin>
 
         </plugins>
     </build>
