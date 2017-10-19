@@ -2,6 +2,8 @@ package swift.calculator.controller;
 
 import com.facebook.nifty.client.FramedClientConnector;
 import com.facebook.swift.service.ThriftClientManager;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.thrift.TException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import javax.annotation.PostConstruct;
 /**
  * create thrift client in controller
  */
+@Api(description = "计算器")
 @Controller
 public class CalculatorController {
 
@@ -37,8 +40,9 @@ public class CalculatorController {
         }
     }
 
-    @RequestMapping(value = "/hello", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
+    @ApiOperation(value = "加", notes = "加法, return num1 + num2")
     public int hello(@RequestParam int num1,
                      @RequestParam int num2) throws TException, TDivisionByZeroException {
         return client.calculate(num1, num2, TOperation.ADD);

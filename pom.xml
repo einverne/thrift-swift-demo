@@ -19,9 +19,10 @@
         <swift.version>0.23.1</swift.version>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <junit.vresion>4.11</junit.vresion>
+        <junit.version>4.11</junit.version>
         <org.springframework.version>4.3.11.RELEASE</org.springframework.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <swagger2.version>2.7.0</swagger2.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -123,7 +124,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>${junit.vresion}</version>
+                <version>${junit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -211,7 +212,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.vresion}</version>
+            <version>${junit.version}</version>
         </dependency>
     </dependencies>
     <build>

@@ -8,5 +8,7 @@
     <mvc:annotation-driven/>
     <context:component-scan base-package="info.einverne.thrift,swift"/>
     <aop:aspectj-autoproxy/>
+    <mvc:default-servlet-handler /> <!-- 使用 Swagger Restful API文档时，添加此注解 -->
+
 
 </beans>
