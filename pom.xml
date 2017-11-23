@@ -12,6 +12,7 @@
         <module>spring-boot-thrift-swift-server</module>
         <module>spring-boot-thrift-swift-client</module>
         <module>thrift-demo</module>
+        <module>spring-mvc-demo</module>
     </modules>
 
     <properties>
