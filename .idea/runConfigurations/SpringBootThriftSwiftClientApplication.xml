@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SpringBootThriftSwiftClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="info.einverne.thrift.SpringBootThriftSwiftClientApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <module name="spring-boot-thrift-swift-client" />
+    <envs />
+    <method />
+  </configuration>
+</component>
