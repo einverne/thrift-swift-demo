@@ -12,4 +12,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--将请求的 resources 映射到 目录 -->
+    <mvc:resources mapping="/resources/**" location="classpath:resources/"/>
 </beans>
