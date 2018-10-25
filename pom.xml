@@ -21,7 +21,7 @@
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.25</slf4j.version>
         <junit.version>4.11</junit.version>
-        <org.springframework.version>4.3.11.RELEASE</org.springframework.version>
+        <org.springframework.version>4.3.20.RELEASE</org.springframework.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <swagger2.version>2.7.0</swagger2.version>
         <jackson.version>2.9.7</jackson.version>
