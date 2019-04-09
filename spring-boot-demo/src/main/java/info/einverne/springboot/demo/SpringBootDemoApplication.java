@@ -3,7 +3,7 @@ package info.einverne.springboot.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/*
+/**
  * 入口 @SpringBootApplication 等同于同时使用 @Configuration, @EnableAutoConfiguration and @ComponentScan 及他们默认值
  *
  * @Configuration tags the class as a source of bean definitions for the application context.

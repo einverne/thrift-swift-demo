@@ -10,8 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-mvc-demo</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>../spring-demo-dao</module>
+  </modules>
 
-    <dependencies>
+  <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
