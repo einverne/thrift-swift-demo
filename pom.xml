@@ -16,7 +16,7 @@
     </modules>
 
     <properties>
-        <libthrift.version>0.10.0</libthrift.version>
+        <libthrift.version>0.12.0</libthrift.version>
         <swift.version>0.23.1</swift.version>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.25</slf4j.version>

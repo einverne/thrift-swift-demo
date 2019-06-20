@@ -22,12 +22,10 @@ public interface BookService
         );
     }
     @ThriftMethod(value = "ping")
-    void ping();
-
+    void ping() throws org.apache.thrift.TException;
 
     @ThriftMethod(value = "createBook")
     void createBook(
         @ThriftField(value=1, name="book", requiredness=Requiredness.NONE) final Book book
-    );
-
+    ) throws org.apache.thrift.TException;
 }

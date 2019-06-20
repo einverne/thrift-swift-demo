@@ -10,112 +10,56 @@ import static com.google.common.base.MoreObjects.toStringHelper;
 @ThriftStruct("Book")
 public final class Book
 {
-    @ThriftConstructor
-    public Book(
-        @ThriftField(value=1, name="isbn", requiredness=Requiredness.NONE) final String isbn,
-        @ThriftField(value=2, name="title", requiredness=Requiredness.NONE) final String title,
-        @ThriftField(value=3, name="author", requiredness=Requiredness.NONE) final String author,
-        @ThriftField(value=4, name="page", requiredness=Requiredness.NONE) final int page,
-        @ThriftField(value=5, name="keyword", requiredness=Requiredness.NONE) final List<String> keyword,
-        @ThriftField(value=6, name="bookType", requiredness=Requiredness.NONE) final BookType bookType
-    ) {
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.page = page;
-        this.keyword = keyword;
-        this.bookType = bookType;
+    public Book() {
     }
 
-    public static class Builder {
-        private String isbn;
-
-        public Builder setIsbn(String isbn) {
-            this.isbn = isbn;
-            return this;
-        }
-        private String title;
-
-        public Builder setTitle(String title) {
-            this.title = title;
-            return this;
-        }
-        private String author;
-
-        public Builder setAuthor(String author) {
-            this.author = author;
-            return this;
-        }
-        private int page;
-
-        public Builder setPage(int page) {
-            this.page = page;
-            return this;
-        }
-        private List<String> keyword;
-
-        public Builder setKeyword(List<String> keyword) {
-            this.keyword = keyword;
-            return this;
-        }
-        private BookType bookType;
-
-        public Builder setBookType(BookType bookType) {
-            this.bookType = bookType;
-            return this;
-        }
-
-        public Builder() { }
-        public Builder(Book other) {
-            this.isbn = other.isbn;
-            this.title = other.title;
-            this.author = other.author;
-            this.page = other.page;
-            this.keyword = other.keyword;
-            this.bookType = other.bookType;
-        }
-
-        public Book build() {
-            return new Book (
-                this.isbn,
-                this.title,
-                this.author,
-                this.page,
-                this.keyword,
-                this.bookType
-            );
-        }
-    }
-
-    private final String isbn;
+    private String isbn;
 
     @ThriftField(value=1, name="isbn", requiredness=Requiredness.NONE)
     public String getIsbn() { return isbn; }
 
-    private final String title;
+    @ThriftField
+    public void setIsbn(final String isbn) { this.isbn = isbn; }
+
+    private String title;
 
     @ThriftField(value=2, name="title", requiredness=Requiredness.NONE)
     public String getTitle() { return title; }
 
-    private final String author;
+    @ThriftField
+    public void setTitle(final String title) { this.title = title; }
+
+    private String author;
 
     @ThriftField(value=3, name="author", requiredness=Requiredness.NONE)
     public String getAuthor() { return author; }
 
-    private final int page;
+    @ThriftField
+    public void setAuthor(final String author) { this.author = author; }
+
+    private int page;
 
     @ThriftField(value=4, name="page", requiredness=Requiredness.NONE)
     public int getPage() { return page; }
 
-    private final List<String> keyword;
+    @ThriftField
+    public void setPage(final int page) { this.page = page; }
+
+    private List<String> keyword;
 
     @ThriftField(value=5, name="keyword", requiredness=Requiredness.NONE)
     public List<String> getKeyword() { return keyword; }
 
-    private final BookType bookType;
+    @ThriftField
+    public void setKeyword(final List<String> keyword) { this.keyword = keyword; }
+
+    private BookType bookType;
 
     @ThriftField(value=6, name="bookType", requiredness=Requiredness.NONE)
     public BookType getBookType() { return bookType; }
+
+    @ThriftField
+    public void setBookType(final BookType bookType) { this.bookType = bookType; }
 
     @Override
     public String toString()
