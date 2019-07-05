@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.einverne.com/schema/dateformat"
+            targetNamespace="http://www.einverne.com/schema/dateformat"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:beans="http://www.springframework.org/schema/beans"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            version="1.0">
+  <xsd:import namespace="http://www.springframework.org/schema/beans"
+              schemaLocation="http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"/>
+
+  <xsd:element name="dateformat">
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="beans:identifiedType">
+          <xsd:attribute name="pattern" type="xsd:string" use="required"/>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <!--<xsd:element name="client">-->
+    <!--<xsd:complexType>-->
+      <!--<xsd:complexContent>-->
+        <!--<xsd:extension base="beans:identifiedType">-->
+          <!--<xsd:sequence>-->
+            <!--<xsd:element maxOccurs="unbounded" minOccurs="0" ref="service"/>-->
+          <!--</xsd:sequence>-->
+        <!--</xsd:extension>-->
+      <!--</xsd:complexContent>-->
+    <!--</xsd:complexType>-->
+  <!--</xsd:element>-->
+
+  <!--<xsd:element name="service">-->
+    <!--<xsd:complexType>-->
+      <!--<xsd:complexContent>-->
+        <!--<xsd:extension base="beans:identifiedType">-->
+          <!--<xsd:attribute name="interface" type="xsd:string" use="required"/>-->
+          <!--<xsd:attribute name="timeout" type="xsd:int"/>-->
+          <!--<xsd:attribute name="handler" type="xsd:string"/>-->
+          <!--<xsd:attribute name="logging" type="xsd:boolean"/>-->
+          <!--<xsd:attribute name="logLimit" type="xsd:int"/>-->
+          <!--<xsd:attribute name="isolation" type="xsd:boolean"/>-->
+          <!--<xsd:attribute name="fallback" type="xsd:string"/>-->
+          <!--<xsd:attribute name="iauthService" type="xsd:string"/>-->
+        <!--</xsd:extension>-->
+      <!--</xsd:complexContent>-->
+    <!--</xsd:complexType>-->
+  <!--</xsd:element>-->
+
+  <!--<xsd:element name="server">-->
+    <!--<xsd:complexType>-->
+      <!--<xsd:complexContent>-->
+        <!--<xsd:extension base="beans:identifiedType">-->
+          <!--<xsd:sequence>-->
+            <!--<xsd:element maxOccurs="unbounded" minOccurs="0" ref="service"/>-->
+          <!--</xsd:sequence>-->
+          <!--<xsd:attribute name="port" type="xsd:string" use="required"/>-->
+        <!--</xsd:extension>-->
+      <!--</xsd:complexContent>-->
+    <!--</xsd:complexType>-->
+  <!--</xsd:element>-->
+</xsd:schema>
