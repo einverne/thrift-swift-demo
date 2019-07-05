@@ -1,5 +1,6 @@
 package info.einverne.springmvcdemo;
 
+import info.einverne.springmvcdemo.app.Component;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.text.ParseException;
@@ -23,5 +24,8 @@ public class CustomNamespaceMain {
     } catch (ParseException e) {
       e.printStackTrace();
     }
+
+    Component component = context.getBean(Component.class);
+    System.out.println(component);
   }
 }

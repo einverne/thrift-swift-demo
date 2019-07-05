@@ -1,1 +1,2 @@
 http\://www.einverne.com/schema/dateformat=info.einverne.springmvcdemo.spring.DateformatNamespaceHandler
+http\://www.einverne.com/schema/component=info.einverne.springmvcdemo.spring.ComponentNamespaceHandler

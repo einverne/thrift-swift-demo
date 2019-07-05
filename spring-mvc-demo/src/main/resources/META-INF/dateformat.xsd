@@ -39,9 +39,6 @@
           <!--<xsd:attribute name="handler" type="xsd:string"/>-->
           <!--<xsd:attribute name="logging" type="xsd:boolean"/>-->
           <!--<xsd:attribute name="logLimit" type="xsd:int"/>-->
-          <!--<xsd:attribute name="isolation" type="xsd:boolean"/>-->
-          <!--<xsd:attribute name="fallback" type="xsd:string"/>-->
-          <!--<xsd:attribute name="iauthService" type="xsd:string"/>-->
         <!--</xsd:extension>-->
       <!--</xsd:complexContent>-->
     <!--</xsd:complexType>-->

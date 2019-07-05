@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.einverne.com/schema/component"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.einverne.com/schema/component"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            version="1.0">
+
+  <xsd:element name="component">
+    <xsd:complexType>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element ref="component"/>
+      </xsd:choice>
+      <xsd:attribute name="id" type="xsd:ID"/>
+      <xsd:attribute name="name" use="required" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

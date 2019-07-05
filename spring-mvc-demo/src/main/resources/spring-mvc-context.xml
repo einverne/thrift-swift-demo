@@ -2,9 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dt="http://www.einverne.com/schema/dateformat"
+       xmlns:foo="http://www.einverne.com/schema/component"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.einverne.com/schema/dateformat http://www.einverne.com/schema/dateformat.xsd">
+       http://www.einverne.com/schema/dateformat http://www.einverne.com/schema/dateformat.xsd
+       http://www.einverne.com/schema/component http://www.einverne.com/schema/component.xsd">
 
   <dt:dateformat id="dateformat" pattern="yyyy-MM-dd HH:mm" />
+
+  <foo:component id="bionic" name="bionic">
+    <foo:component name="Mother-1">
+      <foo:component name="Karate-1"/>
+      <foo:component name="Sport-1"/>
+    </foo:component>
+    <foo:component name="Rock-1"/>
+  </foo:component>
 </beans>

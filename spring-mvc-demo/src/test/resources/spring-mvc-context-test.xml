@@ -2,9 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:my="http://www.einverne.com/schema/dateformat"
+       xmlns:foo="http://www.einverne.com/schema/component"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.einverne.com/schema/dateformat  http://www.einverne.com/schema/dateformat.xsd
+       http://www.einverne.com/schema/component http://www.einverne.com/schema/component.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
   <my:dateformat id="dateformat" pattern="yyyy-MM-dd HH:mm" />
@@ -12,4 +14,8 @@
   <!--<bean id="dateformat" class="java.text.SimpleDateFormat">-->
     <!--<constructor-arg value="yyyy-HH-dd HH:mm"/>-->
   <!--</bean>-->
+
+  <foo:component name="pName" id="pid">
+    <foo:component name="c1"/>
+  </foo:component>
 </beans>
