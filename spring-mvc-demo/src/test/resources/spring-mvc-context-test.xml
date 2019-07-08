@@ -4,10 +4,11 @@
        xmlns:my="http://www.einverne.com/schema/dateformat"
        xmlns:foo="http://www.einverne.com/schema/component"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.einverne.com/schema/dateformat  http://www.einverne.com/schema/dateformat.xsd
        http://www.einverne.com/schema/component http://www.einverne.com/schema/component.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
   <my:dateformat id="dateformat" pattern="yyyy-MM-dd HH:mm" />
 
