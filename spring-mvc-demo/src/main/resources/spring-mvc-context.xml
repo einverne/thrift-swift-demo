@@ -2,11 +2,45 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dt="http://www.einverne.com/schema/dateformat"
-       xmlns:foo="http://www.einverne.com/schema/component"
+       xmlns:foo="http://www.einverne.com/schema/component" xmlns:mvn="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.einverne.com/schema/dateformat http://www.einverne.com/schema/dateformat.xsd
-       http://www.einverne.com/schema/component http://www.einverne.com/schema/component.xsd">
+       http://www.einverne.com/schema/component http://www.einverne.com/schema/component.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+  <context:component-scan base-package="info.einverne.springmvcdemo" />
+  <context:component-scan base-package="info.einverne.spring.dao.mapper"/>
+
+  <jdbc:embedded-database id="adminmaster" type="H2">
+    <jdbc:script location="classpath:db/init.sql" encoding="UTF-8"/>
+  </jdbc:embedded-database>
+
+  <bean id="adminDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="org.h2.Driver"/>
+    <property name="url" value="jdbc:h2:mem:adminmaster;MODE=MYSQL;DB_CLOSE_DELAY=-1"/>
+    <property name='username' value='sa'/>
+    <property name='password' value=''/>
+  </bean>
+
+  <bean id="adminSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="adminDataSource"/>
+    <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+  </bean>
+
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="info.einverne.spring.dao.mapper."/>
+    <property name="sqlSessionFactoryBeanName" value="adminSqlSessionFactory"/>
+  </bean>
+
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="adminDataSource"/>
+  </bean>
+
+  <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+    <property name="transactionManager" ref="transactionManager"/>
+  </bean>
 
   <dt:dateformat id="dateformat" pattern="yyyy-MM-dd HH:mm" />
 
@@ -17,4 +51,17 @@
     </foo:component>
     <foo:component name="Rock-1"/>
   </foo:component>
+
+  <bean id="normalUser" class="info.einverne.spring.dao.model.User" scope="prototype">
+    <property name="nickname" value="normal" />
+  </bean>
+
+  <bean id="adminUser" class="info.einverne.spring.dao.model.User">
+    <property name="nickname" value="admin" />
+  </bean>
+
+  <bean id="userService" class="info.einverne.springmvcdemo.iface.UserService">
+    <lookup-method name="getInitUserInstance" bean="normalUser"/>
+    <lookup-method name="getAdminInstance" bean="adminUser"/>
+  </bean>
 </beans>
