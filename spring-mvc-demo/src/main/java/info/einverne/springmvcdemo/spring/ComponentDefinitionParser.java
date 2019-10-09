@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
 import java.util.List;
 
 /**
- * @author wjw
+ * @author einverne
  * @date 2019-07-05
  */
 public class ComponentDefinitionParser extends AbstractBeanDefinitionParser {

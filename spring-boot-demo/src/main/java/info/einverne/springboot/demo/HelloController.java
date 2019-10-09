@@ -1,5 +1,6 @@
 package info.einverne.springboot.demo;
 
+import info.einverne.springboot.demo.iface.DataFactory;
 import info.einverne.springboot.demo.service.HelloService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -29,10 +30,14 @@ public class HelloController {
     @Resource
     private HelloService helloService;
 
+    @Resource
+    private DataFactory dataFactory;
+
     @ApiOperation(value = "hello api name 接口名字", notes = "api detail desc 接口具体定义")
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
-        return "world " + hello;
+        String data = dataFactory.get(0);
+        return "world " + hello + " " + data;
     }
 
     @ApiOperation(value = "hello1 api name", notes = "api detail desc")
