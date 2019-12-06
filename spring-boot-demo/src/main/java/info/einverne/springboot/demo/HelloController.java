@@ -21,40 +21,40 @@ import javax.annotation.Resource;
 @RestController
 public class HelloController {
 
-    @Value("${key.hello}")
-    private String hello;
+  @Value("${key.hello}")
+  private String hello;
 
-    @Autowired
-    private Person person;
+  @Autowired
+  private Person person;
 
-    @Resource
-    private HelloService helloService;
+  @Resource
+  private HelloService helloService;
 
-    @Resource
-    private DataFactory dataFactory;
+  @Resource
+  private DataFactory dataFactory;
 
-    @ApiOperation(value = "hello api name 接口名字", notes = "api detail desc 接口具体定义")
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello() {
-        String data = dataFactory.get(0);
-        return "world " + hello + " " + data;
-    }
+  @ApiOperation(value = "hello api name 接口名字", notes = "api detail desc 接口具体定义")
+  @RequestMapping(value = "/hello", method = RequestMethod.GET)
+  public String hello() {
+    String data = dataFactory.get(0);
+    return "world " + hello + " " + data;
+  }
 
-    @ApiOperation(value = "hello1 api name", notes = "api detail desc")
-    @ApiImplicitParam(name = "value", value = "传入参数 string", required = true, dataType = "String")
-    @RequestMapping(value = "/hello1", method = RequestMethod.POST)
-    public String hello1(@RequestBody HelloRequest value) {
-        return "world " + value.getValue();
-    }
+  @ApiOperation(value = "hello1 api name", notes = "api detail desc")
+  @ApiImplicitParam(name = "value", value = "传入参数 string", required = true, dataType = "String")
+  @RequestMapping(value = "/hello1", method = RequestMethod.POST)
+  public String hello1(@RequestBody HelloRequest value) {
+    return "world " + value.getValue();
+  }
 
-    @RequestMapping(value = "/person", method = RequestMethod.POST)
-    public String person() {
-        return "person info: " + person.getName() + " " + person.getAge();
-    }
+  @RequestMapping(value = "/person", method = RequestMethod.POST)
+  public String person() {
+    return "person info: " + person.getName() + " " + person.getAge();
+  }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public boolean login(@RequestParam("name") String name,
-                         @RequestParam String password) {
-        return helloService.login(name, password);
-    }
+  @RequestMapping(value = "/login", method = RequestMethod.POST)
+  public boolean login(@RequestParam("name") String name,
+                       @RequestParam String password) {
+    return helloService.login(name, password);
+  }
 }
