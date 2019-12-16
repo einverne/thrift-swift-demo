@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class HelloService {
 
   public boolean login(String name, String password) {
-    System.out.println("hello");
+    log.info("hello");
     return true;
   }
 

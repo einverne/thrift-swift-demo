@@ -1,4 +1,4 @@
-package info.einverne.springboot.demo;
+package info.einverne.springboot.demo.controller;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

@@ -1,5 +1,7 @@
-package info.einverne.springboot.demo;
+package info.einverne.springboot.demo.controller;
 
+import info.einverne.springboot.demo.HelloRequest;
+import info.einverne.springboot.demo.Person;
 import info.einverne.springboot.demo.iface.DataFactory;
 import info.einverne.springboot.demo.service.HelloService;
 import io.swagger.annotations.ApiImplicitParam;
