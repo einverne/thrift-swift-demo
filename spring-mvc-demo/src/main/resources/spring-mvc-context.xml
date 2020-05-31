@@ -10,6 +10,7 @@
        http://www.einverne.com/schema/dateformat http://www.einverne.com/schema/dateformat.xsd
        http://www.einverne.com/schema/component http://www.einverne.com/schema/component.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
+  <context:annotation-config/>
   <context:component-scan base-package="info.einverne.springmvcdemo" />
   <context:component-scan base-package="info.einverne.spring.dao.mapper"/>
 
@@ -64,4 +65,15 @@
     <lookup-method name="getInitUserInstance" bean="normalUser"/>
     <lookup-method name="getAdminInstance" bean="adminUser"/>
   </bean>
+
+  <!--create bean using static factory method-->
+  <bean id="staticFactoryMethodBean" class="info.einverne.springmvcdemo.bean.ClientServiceBean" factory-method="createInstance"/>
+
+
+  <bean id="defaultServiceLocator" class="info.einverne.springmvcdemo.bean.DefaultServiceLocator">
+
+  </bean>
+
+  <!-- create bean using factory bean and factory method -->
+  <bean id="clientService" factory-bean="defaultServiceLocator" factory-method="createInstance"/>
 </beans>

@@ -60,6 +60,11 @@
       <artifactId>lombok</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.30</version>
+    </dependency>
+    <dependency>
       <groupId>info.einverne.thrift</groupId>
       <artifactId>spring-demo-dao</artifactId>
       <version>0.0.1-SNAPSHOT</version>
@@ -68,6 +73,7 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <version>1.4.184</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
   <build>
@@ -86,20 +92,14 @@
       <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
       <!--</plugin>-->
       <plugin>
-        <groupId>org.mortbay.jetty</groupId>
+        <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>8.1.11.v20130520</version>
+        <version>9.4.29.v20200521</version>
         <configuration>
           <scanIntervalSeconds>0</scanIntervalSeconds>
           <webApp>
             <contextPath>/</contextPath>
           </webApp>
-          <connectors>
-            <connector
-                implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-              <port>8085</port>
-            </connector>
-          </connectors>
         </configuration>
       </plugin>
     </plugins>
