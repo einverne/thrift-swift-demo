@@ -24,11 +24,11 @@
 
   <bean id="adminSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="adminDataSource"/>
-    <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+    <property name="mapperLocations" value="classpath:mapper/*.xml"/>
   </bean>
 
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="info.einverne.spring.dao.mapper."/>
+    <property name="basePackage" value="info.einverne.spring.dao.mapper"/>
     <property name="sqlSessionFactoryBeanName" value="adminSqlSessionFactory"/>
   </bean>
 
