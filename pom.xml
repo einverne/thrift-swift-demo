@@ -21,7 +21,7 @@
     <swift.version>0.23.1</swift.version>
     <log4j.version>1.2.27</log4j.version>
     <slf4j.version>1.7.25</slf4j.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
     <org.springframework.version>4.3.20.RELEASE</org.springframework.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <swagger2.version>2.7.0</swagger2.version>
