@@ -81,6 +81,41 @@
           </dependency>
         </dependencies>
       </plugin>
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.4.13</version>
+        <executions>
+          <execution>
+            <id>tag-latest</id>
+            <goals>
+              <goal>build</goal>
+              <goal>tag</goal>
+              <goal>push</goal>
+            </goals>
+            <configuration>
+              <tag>latest</tag>
+            </configuration>
+          </execution>
+          <execution>
+            <id>tag-version</id>
+            <goals>
+              <goal>build</goal>
+              <goal>tag</goal>
+              <goal>push</goal>
+            </goals>
+            <configuration>
+              <tag>${project.version}</tag>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <repository>hub.docker.com/einverne/${project.artifactId}</repository>
+          <buildArgs>
+            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+          </buildArgs>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
