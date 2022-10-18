@@ -26,7 +26,7 @@
     <org.springframework.version>4.3.20.RELEASE</org.springframework.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <swagger2.version>2.7.0</swagger2.version>
-    <jackson.version>2.10.0</jackson.version>
+    <jackson.version>2.13.4.1</jackson.version>
   </properties>
   <parent>
     <groupId>org.springframework.boot</groupId>
